@@ -143,14 +143,7 @@ class App extends Component {
               <table>
                 <tbody>
                   {this.state.rows.map((item) => (
-                    <tr>{this.state.columns.map((item)=>(
-                      <>
-                        {displayRow}
-                      </>
-                      )
-                      )
-
-                    }</tr>
+                    <tr>{this.state.columns.map((item)=>(<>{displayRow}</>))}</tr>
                   ))}
                 </tbody>
               </table>
