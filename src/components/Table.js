@@ -95,10 +95,19 @@ class Table extends Component {
   render() {
     return (
       <div>
-        <button onClick={this.handleAddRow}>Add Row</button>
-        <button onClick={this.handleAddCol}>Add Column</button>
-        <button onClick={this.handleRemoveRow}>Remove Row</button>
-        <button onClick={this.handleRemoveCol}>Remove Column</button>
+        <button onClick={this.handleAddRow} style={buttonStyle}>
+          Add Row
+        </button>
+        <button onClick={this.handleAddCol} style={buttonStyle}>
+          Add Column
+        </button>
+        <button onClick={this.handleRemoveRow} style={buttonStyle}>
+          Remove Row
+        </button>
+        <button onClick={this.handleRemoveCol} style={buttonStyle}>
+          Remove Column
+        </button>
+        <br />
         <select
           id="dropdown"
           onChange={this.handleDropdownChange}
@@ -112,11 +121,15 @@ class Table extends Component {
           <option value="grey">Grey</option>
           <option value="yellow">Yellow</option>
         </select>
-        <button onClick={this.handleAddColorsToUncolored}>
+        <button onClick={this.handleAddColorsToUncolored} style={colorStyle}>
           Color All Uncolored Cells
         </button>
-        <button onClick={this.handleAddColorsToAll}>Color All Cells</button>
-        <button onClick={this.handleResetColor}>Reset Color Of Cells</button>
+        <button onClick={this.handleAddColorsToAll} style={colorStyle}>
+          Color All Cells
+        </button>
+        <button onClick={this.handleResetColor} style={colorStyle}>
+          Reset Color Of Cells
+        </button>
 
         <table>
           <tbody>
@@ -133,5 +146,13 @@ class Table extends Component {
     );
   }
 }
+
+const buttonStyle = {
+  marginTop: "20px",
+};
+
+const colorStyle = {
+  marginBottom: "20px",
+};
 
 export default Table;
