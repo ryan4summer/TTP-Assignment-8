@@ -46,6 +46,12 @@ class App extends Component {
     });
   };
 
+  handleRemoveCol = () => {
+    this.setState({
+      columns: this.state.columns.slice(0,-1),
+    });
+  }
+
   handleDropdownChange = (e) => {
     this.setState({ selectedColor: e.target.value });
   };
@@ -105,12 +111,11 @@ class App extends Component {
               <button onClick={this.handleAddCol} className="btn btn-default">
                 Add Column
               </button>
-              
-              <button
-                onClick={this.handleRemoveRow}
-                className="btn btn-default"
-              >
+              <button onClick={this.handleRemoveRow} className="btn btn-default">
                 Delete Row
+              </button>
+              <button onClick={this.handleRemoveCol} className="btn btn-default">
+                Delete Column
               </button>
               <select id="dropdown" onChange={this.handleDropdownChange} value={this.state.selectedColor}>
                 <option>Select Color</option>
