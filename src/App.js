@@ -14,12 +14,10 @@ class App extends Component {
   }
 
   handleChange = (e) => {
-    const rows = [...this.state.rows];
-     const columns =  [...this.state.columns];
-    this.setState({
-      rows,
-      columns,
-    });
+    // const rows = [...this.state.rows];
+    // this.setState({
+    //   rows,
+    // });
   };
 
   handleAddRow = () => {
@@ -101,7 +99,6 @@ class App extends Component {
         <div className="container">
           <div className="row">
             <div className="col">
-              <button onClick ={this.handleAddColumn} className="btn btn-default">Add Column</button>
               <button onClick={this.handleAddRow} className="btn btn-default" value = "add-row"> 
                 Add Row
               </button>
@@ -155,16 +152,6 @@ class App extends Component {
 
                     }</tr>
                   ))}
-                  {this.state.columns.map((column) =>(
-                    <tr>
-                    
-                      <td className = "columns"
-                      style={dataStyle}
-                      value = "columns"
-                      onClick={this.handleOnClick}
-                      ></td>
-                    </tr>
-                   ) )} 
                 </tbody>
               </table>
             </div>
