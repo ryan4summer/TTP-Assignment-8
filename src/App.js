@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-//import domchallenge from "./components/domchallenge.js";
+import {Table, TableRow, TableCell} from "./components";
 
 class App extends Component {
   constructor(props) {
@@ -108,7 +108,7 @@ class App extends Component {
         <td
         className="td"
         style={dataStyle}
-        onMouseDown={this.handleMouseDown}
+        onMouseDown={this.handleMouseDowng}
         onMouseOverCapture = {this.handleMouseOver}
         onMouseUp = {this.handleMouseUp}
       ></td>
