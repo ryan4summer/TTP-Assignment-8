@@ -5,6 +5,7 @@ class App extends Component {
     super(props);
     this.state = {
       rows: [],
+      columns: [[]],
       selectedColor: null,
     };
     this.handleDropdownChange = this.handleDropdownChange.bind(this);
@@ -24,7 +25,18 @@ class App extends Component {
     this.setState({
       rows: [...this.state.rows, row],
     });
+    console.log(this.state.rows)
   };
+
+  handleAddCol = () => {
+    let newLength = this.state.columns.length;
+    let temp = new Array(newLength);
+    for (let i = 0; i < temp.length; i ++){
+      temp[i] = this.state.rows;
+      this.setState({columns:[...temp,temp]})
+    }
+    console.log(temp)
+  }
 
   handleRemoveRow = () => {
     this.setState({
@@ -63,6 +75,13 @@ class App extends Component {
   };
 
   render() {
+    let displayRow = (
+        <td
+        className="td"
+        style={dataStyle}
+        // onClick={this.handleOnClick}
+      ></td>
+    )
     return (
       <div className="App">
         <div className="container">
@@ -71,6 +90,10 @@ class App extends Component {
               <button onClick={this.handleAddRow} className="btn btn-default">
                 Add Row
               </button>
+              <button onClick={this.handleAddCol} className="btn btn-default">
+                Add Column
+              </button>
+              
               <button
                 onClick={this.handleRemoveRow}
                 className="btn btn-default"
@@ -108,13 +131,14 @@ class App extends Component {
               <table>
                 <tbody>
                   {this.state.rows.map((item) => (
-                    <tr>
-                      <td
-                        className="td"
-                        style={dataStyle}
-                        onClick={this.handleOnClick}
-                      ></td>
-                    </tr>
+                    <tr>{this.state.columns.map((item)=>(
+                      <>
+                        {displayRow}
+                      </>
+                      )
+                      )
+
+                    }</tr>
                   ))}
                 </tbody>
               </table>
