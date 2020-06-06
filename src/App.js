@@ -8,7 +8,7 @@ class App extends Component {
       rows: [],
       columns: [[]],
       selectedColor: null,
-      isClicked: true,
+      isClicked: false,
     };
     this.handleDropdownChange = this.handleDropdownChange.bind(this);
   }
@@ -56,10 +56,21 @@ class App extends Component {
     this.setState({ selectedColor: e.target.value });
   };
 
-  handleOnClick = (e) => {
-    console.log("clicked");
-        e.target.style.backgroundColor = this.state.selectedColor;
+  handleMouseDown = (e) => {
+    e.target.style.backgroundColor = this.state.selectedColor;
+    console.log("Mouse Down");
+    this.setState({isClicked: true})
   };
+
+  handleMouseOver = (e) => {
+    if(this.state.isClicked)
+      e.target.style.backgroundColor = this.state.selectedColor;
+    console.log("Mouse over");
+  }
+
+  handleMouseUp = (e) => {
+    this.setState({isClicked: false})
+  }
 
   handleButtonClick = (e) => {
     let action = e.target.value;
@@ -97,7 +108,9 @@ class App extends Component {
         <td
         className="td"
         style={dataStyle}
-        onClick={this.handleOnClick}
+        onMouseDown={this.handleMouseDown}
+        onMouseOverCapture = {this.handleMouseOver}
+        onMouseUp = {this.handleMouseUp}
       ></td>
     )
     return (
