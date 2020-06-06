@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+//import domchallenge from "./components/domchallenge.js";
 
 class App extends Component {
   constructor(props) {
@@ -7,14 +8,17 @@ class App extends Component {
       rows: [],
       columns: [[]],
       selectedColor: null,
+      isClicked: true,
     };
     this.handleDropdownChange = this.handleDropdownChange.bind(this);
   }
 
   handleChange = (e) => {
     const rows = [...this.state.rows];
+     const columns =  [...this.state.columns];
     this.setState({
       rows,
+      columns,
     });
   };
 
@@ -48,9 +52,19 @@ class App extends Component {
     this.setState({ selectedColor: e.target.value });
   };
 
-  handleOnClick = () => {
-    alert("On click works, so just add the color");
+  handleOnClick = (e) => {
+    console.log("clicked");
+        e.target.style.backgroundColor = this.state.selectedColor;
   };
+
+  handleButtonClick = (e) => {
+    let action = e.target.value;
+    if(action === "column")  {
+      this.setState((state) => ({
+        columns: state.columns,
+      }));
+    }
+  }
 
   handleAddColorsToUncolored = () => {
     let cells = document.getElementsByClassName("td");
@@ -87,7 +101,8 @@ class App extends Component {
         <div className="container">
           <div className="row">
             <div className="col">
-              <button onClick={this.handleAddRow} className="btn btn-default">
+              <button onClick ={this.handleAddColumn} className="btn btn-default">Add Column</button>
+              <button onClick={this.handleAddRow} className="btn btn-default" value = "add-row"> 
                 Add Row
               </button>
               <button onClick={this.handleAddCol} className="btn btn-default">
@@ -100,7 +115,7 @@ class App extends Component {
               >
                 Delete Row
               </button>
-              <select id="dropdown" onChange={this.handleDropdownChange}>
+              <select id="dropdown" onChange={this.handleDropdownChange} value={this.state.selectedColor}>
                 <option>Select Color</option>
                 <option value="black">Black</option>
                 <option value="red">Red</option>
@@ -111,7 +126,7 @@ class App extends Component {
               </select>
               <button
                 onClick={this.handleAddColorsToUncolored}
-                className="btn btn-default"
+                className="btn btn-default" 
               >
                 Color All Uncolored Cells
               </button>
@@ -140,6 +155,16 @@ class App extends Component {
 
                     }</tr>
                   ))}
+                  {this.state.columns.map((column) =>(
+                    <tr>
+                    
+                      <td className = "columns"
+                      style={dataStyle}
+                      value = "columns"
+                      onClick={this.handleOnClick}
+                      ></td>
+                    </tr>
+                   ) )} 
                 </tbody>
               </table>
             </div>
