@@ -91,7 +91,7 @@ class App extends Component {
         <td
         className="td"
         style={dataStyle}
-        // onClick={this.handleOnClick}
+        onClick={this.handleOnClick}
       ></td>
     )
     return (
