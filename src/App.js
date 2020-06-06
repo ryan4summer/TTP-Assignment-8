@@ -14,10 +14,10 @@ class App extends Component {
   }
 
   handleChange = (e) => {
-    // const rows = [...this.state.rows];
-    // this.setState({
-    //   rows,
-    // });
+    const rows = [...this.state.rows];
+    this.setState({
+      rows,
+    });
   };
 
   handleAddRow = () => {
