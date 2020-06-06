@@ -45,9 +45,11 @@ class Table extends Component {
   };
 
   handleRemoveCol = () => {
-    this.setState({
-      columns: this.state.columns.slice(0, -1),
-    });
+    if (this.state.columns.length > 1) {
+      this.setState({
+        columns: this.state.columns.slice(0, -1),
+      });
+    }
   };
 
   handleDropdownChange = (e) => {
