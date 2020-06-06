@@ -27,7 +27,6 @@ class Table extends Component {
     this.setState({
       rows: [...this.state.rows, row],
     });
-    console.log(this.state.rows);
   };
 
   handleAddCol = () => {
@@ -37,7 +36,6 @@ class Table extends Component {
       temp[i] = this.state.rows;
       this.setState({ columns: [...temp, temp] });
     }
-    console.log(temp);
   };
 
   handleRemoveRow = () => {
@@ -58,14 +56,12 @@ class Table extends Component {
 
   handleMouseDown = (e) => {
     e.target.style.backgroundColor = this.state.selectedColor;
-    console.log("Mouse Down");
     this.setState({ isClicked: true });
   };
 
   handleMouseOver = (e) => {
     if (this.state.isClicked)
       e.target.style.backgroundColor = this.state.selectedColor;
-    console.log("Mouse over");
   };
 
   handleMouseUp = (e) => {
@@ -95,21 +91,12 @@ class Table extends Component {
   };
 
   render() {
-    let displayRow = (
-      <td
-        className="td"
-        style={dataStyle}
-        onMouseDown={this.handleMouseDown}
-        onMouseOverCapture={this.handleMouseOver}
-        onMouseUp={this.handleMouseUp}
-      ></td>
-    );
     return (
       <div>
         <button onClick={this.handleAddRow}>Add Row</button>
         <button onClick={this.handleAddCol}>Add Column</button>
-        <button onClick={this.handleRemoveRow}>Delete Row</button>
-        <button onClick={this.handleRemoveCol}>Delete Column</button>
+        <button onClick={this.handleRemoveRow}>Remove Row</button>
+        <button onClick={this.handleRemoveCol}>Remove Column</button>
         <select
           id="dropdown"
           onChange={this.handleDropdownChange}
@@ -131,25 +118,18 @@ class Table extends Component {
 
         <table>
           <tbody>
-            {this.state.rows.map((item) => (
-              <tr>
-                {this.state.columns.map((item) => (
-                  <>{displayRow}</>
-                ))}
-              </tr>
-            ))}
+            <TableRow
+              rows={this.state.rows}
+              columns={this.state.columns}
+              handleMouseDown={this.handleMouseDown}
+              handleMouseOver={this.handleMouseOver}
+              handleMouseUp={this.handleMouseUp}
+            />
           </tbody>
         </table>
       </div>
     );
   }
 }
-
-const dataStyle = {
-  border: "1px solid black",
-  backgroundColor: "",
-  height: "20px",
-  width: "100px",
-};
 
 export default Table;
