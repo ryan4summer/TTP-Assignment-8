@@ -20,6 +20,7 @@ class Table extends Component {
     });
   };
 
+  // add a row 
   handleAddRow = () => {
     const row = {
       row: "",
@@ -29,6 +30,7 @@ class Table extends Component {
     });
   };
 
+  // add a column
   handleAddCol = () => {
     let newLength = this.state.columns.length;
     let temp = new Array(newLength);
@@ -38,12 +40,14 @@ class Table extends Component {
     }
   };
 
+  // remove a row
   handleRemoveRow = () => {
     this.setState({
       rows: this.state.rows.slice(0, -1),
     });
   };
 
+  // remove a column
   handleRemoveCol = () => {
     if (this.state.columns.length > 1) {
       this.setState({
@@ -52,24 +56,29 @@ class Table extends Component {
     }
   };
 
+  // change color from the drop down menu
   handleDropdownChange = (e) => {
     this.setState({ selectedColor: e.target.value });
   };
 
+  // when the left click the gird change the color to selected color
   handleMouseDown = (e) => {
     e.target.style.backgroundColor = this.state.selectedColor;
     this.setState({ isClicked: true });
   };
 
+  // when mouse move over the gird and the the left clikc is held, change the color to the selected color
   handleMouseOver = (e) => {
     if (this.state.isClicked)
       e.target.style.backgroundColor = this.state.selectedColor;
   };
 
+  // When the left click is released, the isClicked become false and will not change color after that
   handleMouseUp = (e) => {
     this.setState({ isClicked: false });
   };
 
+  // change all the blank grid to the selected color 
   handleAddColorsToUncolored = () => {
     let cells = document.getElementsByClassName("td");
     for (let i = 0; i < cells.length; i++) {
@@ -78,6 +87,7 @@ class Table extends Component {
     }
   };
 
+  // Change all the color to the selected color
   handleAddColorsToAll = () => {
     let cells = document.getElementsByClassName("td");
     for (let i = 0; i < cells.length; i++) {
@@ -85,6 +95,7 @@ class Table extends Component {
     }
   };
 
+  // Reset the color to the colored grids to blank color
   handleResetColor = () => {
     let cells = document.getElementsByClassName("td");
     for (let i = 0; i < cells.length; i++) {
